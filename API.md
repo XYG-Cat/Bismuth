@@ -143,7 +143,7 @@
 
 ### 私有成员函数
 
-#### `static unique_ptr<string> caseWindowsVersion(OSVERSIONINFOEX& osvi)`
+#### `static unique_ptr<string> pCaseWindowsVersion(OSVERSIONINFOEX& osvi)`
 
 - **描述：** 获取 Windows 操作系统版本信息的辅助函数。
 - **参数：**

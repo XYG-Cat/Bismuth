@@ -50,8 +50,6 @@ class Module {
     void position(int newXPosition, int newYPosition);
 
     void draw() const;
-
-    void loadInText() const;
 };
 
 #endif

@@ -35,36 +35,26 @@ using std::endl;
 // 2:宽度, 高度
 // 3:无参, 既默认宽度, 默认高度
 
+WorkSpace::WorkSpace(const int width, const int height, const string& title, char backGroundColor) {
+    this->pWidth = width;
+    this->pHeight = height;
+    this->pTitle = title;
+    this->pBackgroundChar = backGroundColor;
 
-WorkSpace::WorkSpace(const int width, const int height, const string& title) {
-	this->pWidth = width;
-	this->pHeight = height;
-	this->pTitle = title;
-
-	for (int i = 0; i < this->pHeight; ++i) {
-        pDisplay.emplace_back(pWidth, SPACE);
+    for (int i = 0; i < this->pHeight; ++i) {
+        pDisplay.emplace_back(pWidth, backGroundColor);
     }
 }
 
-WorkSpace::WorkSpace(const int width, const int height) {
-	this->pWidth = width;
-	this->pHeight = height;
-	this->pTitle = DEFAULT_TITLE;
 
-	for (int i = 0; i < this->pHeight; ++i) {
-        pDisplay.emplace_back(pWidth, SPACE);
-    }
-}
+WorkSpace::WorkSpace(const int width, const int height, const string& title)
+: WorkSpace(width, height, title, SPACE) {}
 
-WorkSpace::WorkSpace() {
-	this->pWidth = DEFAULT_WIDTH;
-	this->pHeight = DEFAULT_HEIGHT;
-	this->pTitle = DEFAULT_TITLE;
+WorkSpace::WorkSpace(const int width, const int height)
+: WorkSpace(width, height, DEFAULT_TITLE, SPACE) {}
 
-	for (int i = 0; i < this->pHeight; ++i) {
-        pDisplay.emplace_back(pWidth, SPACE);
-    }
-}
+WorkSpace::WorkSpace()
+: WorkSpace(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_TITLE, SPACE) {}
 
 
 // 获得设置的WorkSpace尺寸, 返回一个向量
@@ -87,13 +77,16 @@ void WorkSpace::title(const string& newTitle) {
     this->pTitle = newTitle;
 }
 
-// 此方法以及其重载暂无作用
+
 char WorkSpace::backgroundChar() const {
     return this->pBackgroundChar;
 }
 
 void WorkSpace::backgroundChar(const char& newBackgroundColor) {
     this->pBackgroundChar = newBackgroundColor;
+    for (int i = 0; i < this->pHeight; ++i) {
+        pDisplay.emplace_back(pWidth, newBackgroundColor);
+    }
 }
 
 void WorkSpace::draw() {

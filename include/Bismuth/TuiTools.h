@@ -35,7 +35,7 @@ using std::unique_ptr;
 class TuiTools {
     private:
 #ifdef _WIN32
-    static unique_ptr<string> caseWindowsVersion(OSVERSIONINFOEX& osvi);
+    static unique_ptr<string> pCaseWindowsVersion(OSVERSIONINFOEX& osvi);
 #endif
 
     public:

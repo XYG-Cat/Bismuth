@@ -40,7 +40,8 @@ class WorkSpace {
 
     vector<string> pDisplay;
     public:
-	WorkSpace(int width, int height, const string& title);
+    WorkSpace(int width, int height, const string& title, char backGroundColor);
+    WorkSpace(int width, int height, const string& title);
 	WorkSpace(int width, int height);
 	WorkSpace();
 

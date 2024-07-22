@@ -35,8 +35,9 @@ using std::cout;
 using std::endl;
 using std::string;
 
+// private
 #ifdef _WIN32
-std::unique_ptr<string> TuiTools::caseWindowsVersion(OSVERSIONINFOEX& osvi) {
+std::unique_ptr<string> TuiTools::pCaseWindowsVersion(OSVERSIONINFOEX& osvi) {
     // 使用 switch 判断主版本号 使用 if-else 判断次版本号
     switch (osvi.dwMajorVersion) {
 
@@ -63,6 +64,7 @@ std::unique_ptr<string> TuiTools::caseWindowsVersion(OSVERSIONINFOEX& osvi) {
 }
 
 
+//public
 void TuiTools::hideCursor() {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO cursorInfo;
@@ -104,7 +106,7 @@ string TuiTools::systemVersion() {
 
     // 调用 GetVersionEx 函数获取操作系统版本信息
     if (GetVersionEx(reinterpret_cast<OSVERSIONINFO*>(&osvi))) {
-        return *TuiTools::caseWindowsVersion(osvi);
+        return *TuiTools::pCaseWindowsVersion(osvi);
     } else {
         return "Failed to retrieve OS version information";
     }
